@@ -1,7 +1,7 @@
 ﻿using System;
 // also include Utils class from Canvas
 
-namespace CS_Lab4_GuessMyNumber //but actually lab 7
+namespace CS_Lab4_GuessMyNumber //but actually lab 7?  And Lab4?  Starting to get confused at how this is working...
 {
     class Methods
     {

@@ -62,6 +62,29 @@ namespace CS_Lab4_GuessMyNumber
             return num;
         }
 
+        public static int GetNumber(string prompt, int max, int min)
+        {
+            if(max < min)
+            {
+                Console.WriteLine("Error: invalid range max " + max + " < min " + min);
+                return -1;
+            }
+            int num;
+            do
+            {
+                num = GetNumber(prompt);
+                if (num > max)
+                {
+                    Console.WriteLine("Number too large");
+                }
+                if (num < min)
+                {
+                    Console.WriteLine("Number too small");
+                }
+            } while (num > max || num < min);
+            return num;
+        }
+
         static void Main(string[] args)
         {
             string msg = GetInput("Enter a message: ");

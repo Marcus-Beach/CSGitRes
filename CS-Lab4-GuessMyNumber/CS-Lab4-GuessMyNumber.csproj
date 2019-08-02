@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <RootNamespace>CS_Lab4_GuessMyNumber</RootNamespace>
-    <StartupObject>CS_Lab4_GuessMyNumber.DateTimeExamples</StartupObject>
+    <StartupObject>CS_Lab4_GuessMyNumber.Program</StartupObject>
   </PropertyGroup>
 
 </Project>
