@@ -49,10 +49,15 @@ namespace CS_Lab4_GuessMyNumber
             {
                 for (int j = 0; j < boxSize; j++)
                 {
-
+                    if(i == 0 || i == (boxSize - 1) || j == 0 || j == (boxSize - 1))
+                    {
+                        Console.Write("*");
+                    }
+                    else Console.Write(" ");
                 }
+                Console.Write("\n");
             }
-            string sentance = GetInput("Enter a sentance to box."); //grab the sentance
+            string sentance = GetInput("Enter a sentance to box.\n"); //grab the sentance
             string[] words = sentance.Split(" "); //split it into words
             string word = "";
             max = 0;
@@ -61,26 +66,78 @@ namespace CS_Lab4_GuessMyNumber
                 if (w.Length > max) max = w.Length;
             }
             List<string> preBox = new List<string>();
-            while (words.Length > max && max <= 0) //square up the sentance
+            foreach(string w in words)
+            {
+                Console.WriteLine(w);
+            }
+            while (words.Length > max && max > 0) //square up the sentance, run until array length is less than max line size
             {                
                 for (int i = 0; i < words.Length; i++) 
                 {
-                    if (word.Length < max && word == "")
+                    Console.WriteLine("Processing " + words[i] + " index " + i);
+                    if(word.Length >= max) // handle word is greater than max
                     {
-                        word = words[i];
-                    }
-                    else if(word.Length < max && word != "")
-                    {
-                        word = word + " " + words[i];
-                    }
-                    else
-                    {
+                        Console.WriteLine("Adding " + word);
                         preBox.Add(word);
                         word = "";
                     }
+                    else if (word.Length < max && word == "") //when word is empty and array line is less than biggest word
+                    {
+                        word = words[i];
+                    }
+                    else if(word.Length < max && word != "") //when word is not empty and line is less than biggest word
+                    {
+                        word = word + " " + words[i];
+                    }
+                    if (word.Length >= max || i == (words.Length - 1)) // handle word is greater than max
+                    {
+                        Console.WriteLine("Adding " + word);
+                        preBox.Add(word);
+                        word = "";
+                    }
+
                 }
-                words = preBox.ToArray();
+                words = preBox.ToArray(); // reset words to the list and clear  the list
                 preBox.Clear();
+                foreach (string w in words) //find the biggest word
+                {
+                    if (w.Length > max) max = w.Length;
+                }
+                foreach (string w in words)
+                {
+                    Console.WriteLine(w);
+                }
+            }
+            foreach (string w in words) //find the biggest word
+            {
+                if (w.Length > max) max = w.Length;
+            }
+            Console.WriteLine("");
+            string spaces = ""; //for holding empty space
+            for (int i = 0; i < words.Length; i++)
+            {
+                if(i == 0) // write top of box
+                {
+                    for (int j = 0; j < (max + 2); j++)
+                    {
+                        Console.Write("*");
+                    }
+                    Console.Write("\n");
+                }
+                spaces = ""; // reset spaces
+                for (int j = 0; j < (max - words[i].Length); j++) //get number of spaces
+                {
+                    spaces += " ";
+                }
+                Console.Write("*" + words[i] + spaces + "*\n"); //write line
+                if(i == (words.Length - 1)) //write bottom of box
+                {
+                    for (int j = 0; j < (max + 2); j++)
+                    {
+                        Console.Write("*");
+                    }
+                    Console.Write("\n");
+                }
             }
 
         }
